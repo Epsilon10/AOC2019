@@ -18,9 +18,7 @@ int fuel_from_mass_recursive(int mass, int total_fuel = 0){
     return total_fuel;
 };
 
-int part_one() {
-    auto const masses = read_file_lines_int("./inputs/day1.txt");
-
+int part_one(std::vector<int> const& masses) {
     int sum = 0;
     for (auto mass : masses) {
         auto const fuel = fuel_from_mass(mass);
@@ -30,9 +28,7 @@ int part_one() {
     return sum;
 }
 
-int part_two() {
-    auto const masses = read_file_lines_int("./inputs/day1.txt");
-    
+int part_two(std::vector<int> const& masses) {    
     int sum = 0;
     for (auto mass : masses) {
         auto const fuel = fuel_from_mass_recursive(mass);
@@ -43,12 +39,14 @@ int part_two() {
 }
 
 int main() {
+    auto const masses = read_file_lines_int("./inputs/day1.txt");
+
     auto const p1_start = std::chrono::steady_clock::now();
-    auto const p1_ans = part_one();
+    auto const p1_ans = part_one(masses);
     auto const p1_end = std::chrono::steady_clock::now();
 
     auto const p2_start = std::chrono::steady_clock::now();
-    auto const p2_ans = part_two();
+    auto const p2_ans = part_two(masses);
     auto const p2_end = std::chrono::steady_clock::now();
 
     auto const p1_time_ms = std::chrono::duration <double, std::milli>(p1_end - p1_start).count();
